@@ -1,3 +1,7 @@
+#before the plot tasks this code has run to get the data ready for the plots
+#in the plots you will see the abbreviations do, vrij and zat. These abbrevations are short in Dutch for Thursday, Friday and Saterday.
+#sorry couldn't find the function the get these labels in English
+
 household_power_consumption <- read.csv("~/data/household_power_consumption.txt", sep=";")
 hpc <- household_power_consumption
 
