@@ -1,3 +1,17 @@
+household_power_consumption <- read.csv("~/data/household_power_consumption.txt", sep=";")
+hpc <- household_power_consumption
+
+hpc$Date <- as.Date(hpc$Date, format="%d/%m/%Y")
+
+df <- hpc[(hpc$Date=="2007-02-01") | (hpc$Date=="2007-02-02"),]
+df$Global_active_power <- as.numeric(as.character(df$Global_active_power))
+df$Global_reactive_power <- as.numeric(as.character(df$Global_reactive_power))
+df$Voltage <- as.numeric(as.character(df$Voltage))
+df <- transform(df, timestamp=as.POSIXct(paste(Date, Time)), "%d/%m/%Y %H:%M:%S")
+df$Sub_metering_1 <- as.numeric(as.character(df$Sub_metering_1))
+df$Sub_metering_2 <- as.numeric(as.character(df$Sub_metering_2))
+df$Sub_metering_3 <- as.numeric(as.character(df$Sub_metering_3))
+
 plot3 <- function() {
   plot(df$timestamp,df$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
   lines(df$timestamp,df$Sub_metering_2,col="red")
